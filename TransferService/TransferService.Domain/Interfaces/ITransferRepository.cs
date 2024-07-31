@@ -1,6 +1,6 @@
 ﻿namespace TransferService.Domain.Interfaces
 {
-    internal interface ITransferRepository
+    public interface ITransferRepository
     {
     }
 }
