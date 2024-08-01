@@ -1,5 +1,8 @@
 ﻿using AccountService.Application.Accounts.Commands;
+using AccountService.Application.Consumers;
 using AccountService.Application.Mapper;
+
+using MassTransit;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +16,22 @@ namespace AccountService.Application
         {
             services.AddMediatR(config => config.RegisterServicesFromAssembly(Assembly.GetAssembly(typeof(UpdateAccountBalanceCommand))!));
             services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile)));
+
+            services.AddMassTransit(x =>
+            {
+                x.SetKebabCaseEndpointNameFormatter();
+
+                x.AddConsumer<UpdateAccountBalanceConsumer, UpdateAccountBalanceConsumerDefinition>();
+
+                x.UsingRabbitMq((context, cfg) =>
+                {
+                    cfg.Host("", _ => { });
+                    cfg.UseMessageRetry(r => r.Immediate(3));
+                    cfg.ConfigureEndpoints(context);
+                });
+
+            });
+
 
             return services;
         }

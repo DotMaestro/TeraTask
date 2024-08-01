@@ -16,6 +16,7 @@ namespace TransferService.Infrastructure
             services.AddDbContext<TransferDbContext>(
                 options => options.UseSqlServer(configuration.GetConnectionString("TransferServiceConnectionString")));
 
+            services.AddScoped<TransferServiceDbContextInitialiser>();
             services.AddScoped<ITransferRepository, TransferRepository>();
 
             return services;

@@ -5,8 +5,21 @@ services:
       context: ./AccountService
       dockerfile: ./AccountService.API/Dockerfile
 
+  accountdb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+
   transferservice.api:
     image: ${DOCKER_REGISTRY-}transferserviceapi
     build:
       context: ./TransferService
       dockerfile: ./TransferService.API/Dockerfile
+
+  transferdb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+
+  rabbitmq:
+    image: rabbitmq:3.11-management
+
+volumes:
+  account_sql_data:
+  transfer_sql_data:

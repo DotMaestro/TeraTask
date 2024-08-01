@@ -54,7 +54,9 @@ namespace AccountService.Infrastructure.Database
         {
             if(!_context.Accounts.Any())
             {
-                var gio = new Account(Guid.NewGuid(), "Giorgi Didebulidze");
+                var guidForTesting = Guid.Parse("AA18BF98-4C3B-434B-8D39-3621D914DCFF");
+
+                var gio = new Account(guidForTesting, "Giorgi Didebulidze");
                 var jemal = new Account(Guid.NewGuid(), "Jemal Bagashvili");
                 var jon = new Account(Guid.NewGuid(), "Jemal Bagashvili");
                 var nugzari = new Account(Guid.NewGuid(), "Nugzari Tyemaladze");

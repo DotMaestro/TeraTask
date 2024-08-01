@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Tera.TransferService.Messages\Tera.TransferService.Messages.csproj" />
     <ProjectReference Include="..\TransferService.Domain\TransferService.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="8.2.3" />
     <PackageReference Include="MediatR" Version="12.4.0" />
   </ItemGroup>
 

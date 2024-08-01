@@ -2,6 +2,7 @@ using TransferService.Infrastructure;
 using TransferService.Application;
 using TransferService.API.Middlewares;
 using Serilog;
+using TransferService.Infrastructure.Database;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -29,6 +30,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var initialiser = scope.ServiceProvider.GetRequiredService<TransferServiceDbContextInitialiser>();
+        await initialiser.InitialiseAsync();
+    }
 }
 
 app.UseHttpsRedirection();
