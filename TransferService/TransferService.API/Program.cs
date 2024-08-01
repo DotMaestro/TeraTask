@@ -3,6 +3,8 @@ using TransferService.Application;
 using TransferService.API.Middlewares;
 using Serilog;
 using TransferService.Infrastructure.Database;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -17,7 +19,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Transfer Service",
+        Version = "v1",
+        Description = "Gives ability to make transactions"
+    });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+    c.IncludeXmlComments(xmlPath);
+});
 
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
@@ -29,7 +44,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Account Service V1");
+    });
 
     using (var scope = app.Services.CreateScope())
     {

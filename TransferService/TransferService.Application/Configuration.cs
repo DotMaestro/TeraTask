@@ -19,11 +19,7 @@ namespace TransferService.Application
             {
                 x.UsingRabbitMq((context, cfg) =>
                 {
-                    cfg.Host("localhost", "/", h =>
-                    {
-                        h.Username("guest");
-                        h.Password("guest");
-                    });
+                    cfg.Host("amqp://guest:guest@rabbitmq:5672", _ => { });
                     cfg.ConfigureEndpoints(context);
                 });
             });

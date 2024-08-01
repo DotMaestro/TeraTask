@@ -19,7 +19,7 @@ namespace TransferService.Application.Transfers.Commands
         private readonly ITransferRepository _transferRepository;
         private readonly IBus _broker;
         private readonly IMapper _mapper;
-
+        
         public CreateTransferCommandHandler(ITransferRepository transferRepository, IBus broker, IMapper mapper)
         {
             _transferRepository = transferRepository;
@@ -33,7 +33,7 @@ namespace TransferService.Application.Transfers.Commands
 
             _transferRepository.Create(transfer);
 
-            await _broker.Publish<UpdateAccountBalance>(new 
+            await _broker.Publish(new UpdateAccountBalance
             {
                 CommandId = Guid.NewGuid(),
                 AccountNumber = transfer.AccountNumber,

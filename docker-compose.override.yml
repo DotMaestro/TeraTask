@@ -52,7 +52,7 @@ services:
       - transfer_sql_data:/var/opt/mssql
 
   rabbitmq:
-    container_name: RabbitMQ
+    container_name: rabbitmq
     restart: always
     environment:
     - RabbitMQ_USER=guest

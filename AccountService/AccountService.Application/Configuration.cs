@@ -25,7 +25,7 @@ namespace AccountService.Application
 
                 x.UsingRabbitMq((context, cfg) =>
                 {
-                    cfg.Host("", _ => { });
+                    cfg.Host("amqp://guest:guest@rabbitmq:5672", _ => { });
                     cfg.UseMessageRetry(r => r.Immediate(3));
                     cfg.ConfigureEndpoints(context);
                 });

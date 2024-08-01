@@ -81,7 +81,7 @@ namespace AccountService.Infrastructure.Database
                     irodioni
                 };
 
-                await _context.AddRangeAsync(accounts);
+                _context.AddRange(accounts);
                 await _context.SaveChangesAsync();
             }
         }
