@@ -41,7 +41,7 @@
                 throw new InvalidOperationException("Insufficient funds for this withdrawal.");
             }
 
-            Balance -= amount;
+            Balance += amount;
         }
     }
 }
