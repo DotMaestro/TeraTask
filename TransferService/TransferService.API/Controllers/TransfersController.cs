@@ -1,6 +1,5 @@
 ﻿using MediatR;
 
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using TransferService.Application.Transfers.Commands;
@@ -25,8 +24,6 @@ namespace TransferService.API.Controllers
         /// <returns>TransferId</returns>
         [HttpPost(Name = "CreateTransfer")]
         [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
-        [ProducesResponseType(404)]
         [ProducesResponseType(500)]
         public async Task<ActionResult> CreateTransferAsync([FromBody] CreateTransferCommand command)
         {
