@@ -2,7 +2,7 @@
 
 namespace AccountService.Tests.Unit.Models
 {
-    [Collection("MyCollection")]
+    [Collection("AccountCollection")]
     public class AccountShould
     {
         [Fact]

@@ -7,7 +7,7 @@ using Moq;
 
 namespace AccountService.Tests.Unit.Commands
 {
-    [Collection("MyCollection")]
+    [Collection("AccountCollection")]
     public class AccountCommandShould
     {
         private readonly IServiceProvider _serviceProvider;

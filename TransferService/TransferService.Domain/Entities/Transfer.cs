@@ -7,5 +7,9 @@
         public decimal Amount { get; set; }
         public DateTime CreatedDate { get; set; }
 
+        public Transfer()
+        {
+            CreatedDate = DateTime.UtcNow;
+        }
     }
 }

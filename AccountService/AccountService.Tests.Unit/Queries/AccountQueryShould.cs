@@ -9,7 +9,7 @@ using Moq;
 
 namespace AccountService.Tests.Unit.Queries
 {
-    [Collection("MyCollection")]
+    [Collection("AccountCollection")]
     public class AccountQueryShould
     {
         private readonly IServiceProvider _serviceProvider;

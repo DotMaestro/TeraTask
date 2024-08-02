@@ -10,7 +10,7 @@ using Moq;
 
 namespace AccountService.Tests.Unit.Controllers
 {
-    [Collection("MyCollection")]
+    [Collection("AccountCollection")]
     public class AccountControllerShould
     {
         private readonly IServiceProvider _serviceProvider;
